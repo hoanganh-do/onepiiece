@@ -6,3 +6,11 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+.claude/
+vendor/
+
+.DS_Store
+Thumbs.db
+*.log
+dist/
+build/
