@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { TIMEOUT } from './tests/common/timeouts.js';
 
 /**
  * Read environment variables from file.
@@ -29,7 +30,24 @@ export default defineConfig({
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    screenshot: 'only-on-failure',
+    video: 'off',
     trace: 'on-first-retry',
+    // headless: false,
+
+    /* Mức mặc định cho hành động/điều hướng không truyền timeout riêng.
+       Page object dùng timeout theo từng action - xem tests/common/timeouts.ts */
+    actionTimeout: TIMEOUT.click,
+    navigationTimeout: TIMEOUT.navigation,
+  },
+
+  /* Timeout cho CẢ một test case. Trước đây để 10s nên spec nào cũng phải tự
+     gọi test.setTimeout(60_000) - nay lấy mặc định chung từ timeouts.ts. */
+  timeout: TIMEOUT.test,
+
+  /* Timeout mặc định của mọi expect(). */
+  expect: {
+    timeout: TIMEOUT.verify,
   },
 
   /* Configure projects for major browsers */
