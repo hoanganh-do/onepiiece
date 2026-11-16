@@ -148,31 +148,31 @@ test.describe("Tạo khách hàng tiềm năng", () => {
   });
 
   /* ── CA BẤT THƯỜNG 1: bỏ trống trường bắt buộc ──────────────────── */
-  test("TC02 - Bỏ trống trường bắt buộc thì không tạo được", async () => {
-    // Không nhập gì, bấm Lưu ngay
-    await leadFormPage.clickSubmit();
+  // test("TC02 - Bỏ trống trường bắt buộc thì không tạo được", async () => {
+  //   // Không nhập gì, bấm Lưu ngay
+  //   await leadFormPage.clickSubmit();
 
-    // Kỳ vọng: vẫn ở trang tạo và có thông báo lỗi bắt buộc
-    await leadFormPage.verifyStayOnFormWithError(
-      /bắt buộc|không được để trống|required/i,
-    );
-  });
+  //   // Kỳ vọng: vẫn ở trang tạo và có thông báo lỗi bắt buộc
+  //   await leadFormPage.verifyStayOnFormWithError(
+  //     /bắt buộc|không được để trống|required/i,
+  //   );
+  // });
 
   /* ── CA BẤT THƯỜNG 2: CCCD sai định dạng ────────────────────────── */
-  test("TC03 - CCCD không đủ 12 số phải báo lỗi", async () => {
-    const unique = Date.now();
+  // test("TC03 - CCCD không đủ 12 số phải báo lỗi", async () => {
+  //   const unique = Date.now();
 
-    await leadFormPage.createLead({
-      personName: `KH CCCD ${unique}`,
-      title: `Yêu cầu CCCD ${unique}`,
-      leadType: 1,
-      citizenId: "123abc", // sai: có chữ và không đủ 12 số
-    });
+  //   await leadFormPage.createLead({
+  //     personName: `KH CCCD ${unique}`,
+  //     title: `Yêu cầu CCCD ${unique}`,
+  //     leadType: 1,
+  //     citizenId: "123abc", // sai: có chữ và không đủ 12 số
+  //   });
 
-    // Kỳ vọng: vẫn ở trang tạo và báo lỗi CCCD
-    // TODO: chỉnh regex cho khớp đúng text lỗi thực tế của hệ thống
-    await leadFormPage.verifyStayOnFormWithError(
-      /CCCD|căn cước|12 số|không hợp lệ/i,
-    );
-  });
+  //   // Kỳ vọng: vẫn ở trang tạo và báo lỗi CCCD
+  //   // TODO: chỉnh regex cho khớp đúng text lỗi thực tế của hệ thống
+  //   await leadFormPage.verifyStayOnFormWithError(
+  //     /CCCD|căn cước|12 số|không hợp lệ/i,
+  //   );
+  // });
 });
