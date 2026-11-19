@@ -14,3 +14,7 @@ Thumbs.db
 *.log
 dist/
 build/
+# Biến môi trường - chứa mật khẩu, KHÔNG commit
+.env
+.env.*
+!.env.example
